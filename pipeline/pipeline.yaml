@@ -1,0 +1,202 @@
+name: "Pipeline — Onboarding de Cliente"
+version: "1.0.0"
+created: "2026-03-26"
+squad: "visualis-digital"
+
+description: >
+  Pipeline completo para onboarding de novo cliente da Visualis Digital.
+  Do diagnóstico à operação rodando. 4 checkpoints de aprovação garantem
+  que o Pablo valida cada fase antes de avançar.
+
+mode: "agencia"
+
+steps:
+  - id: step-01
+    name: "Diagnóstico do Cliente"
+    type: checkpoint
+    file: steps/step-01-diagnostico.md
+
+  - id: step-02
+    name: "Pesquisa de Mercado"
+    type: agent
+    agent: researcher
+    tasks:
+      - pesquisa-concorrentes
+      - benchmarks-nicho
+    file: steps/step-02-pesquisa.md
+    depends_on: step-01
+
+  - id: step-03
+    name: "Plano Estratégico"
+    type: agent
+    agent: strategist
+    tasks:
+      - funil
+      - canais
+      - plano-mensal
+    file: steps/step-03-estrategia.md
+    depends_on: step-02
+
+  - id: step-04
+    name: "Aprovação da Estratégia"
+    type: checkpoint
+    file: steps/step-04-aprovacao-estrategia.md
+    depends_on: step-03
+
+  - id: step-05
+    name: "Conceito Criativo"
+    type: agent
+    agent: creative-director
+    tasks:
+      - conceito-central
+      - ideias-conteudo
+      - serie-recorrente
+    file: steps/step-05-criativo.md
+    depends_on: step-04
+
+  - id: step-06
+    name: "Copy das Primeiras Peças"
+    type: agent
+    agent: copywriter
+    tasks:
+      - legendas
+      - mensagens-whatsapp
+    file: steps/step-06-copy.md
+    depends_on: step-05
+
+  - id: step-07
+    name: "Calendário Editorial"
+    type: agent
+    agent: content-planner
+    tasks:
+      - calendario-mes-1
+    file: steps/step-07-calendario.md
+    depends_on: step-06
+
+  - id: step-08
+    name: "Planejamento de Vídeo"
+    type: agent
+    agent: video-strategist
+    optional: true
+    tasks:
+      - tipos-video
+      - roteiros
+      - briefing-pmf
+    file: steps/step-08-video.md
+    depends_on: step-06
+
+  - id: step-09
+    name: "Direção Visual"
+    type: agent
+    agent: designer
+    tasks:
+      - identidade-peças
+      - prompts-imagem
+    file: steps/step-09-design.md
+    depends_on: step-05
+
+  - id: step-10
+    name: "Aprovação Criativa"
+    type: checkpoint
+    file: steps/step-10-aprovacao-criativa.md
+    depends_on:
+      - step-07
+      - step-08
+      - step-09
+
+  - id: step-11
+    name: "Configuração CRM e Automação"
+    type: agent
+    agent: automation-engineer
+    tasks:
+      - crm-setup
+      - whatsapp-bot
+      - fluxos-n8n
+    file: steps/step-11-automacao.md
+    depends_on: step-04
+
+  - id: step-12
+    name: "Criação do Site"
+    type: agent
+    agent: web-developer
+    optional: true
+    tasks:
+      - site-lovable
+      - formularios
+      - integracao-crm
+    file: steps/step-12-site.md
+    depends_on: step-04
+
+  - id: step-13
+    name: "SEO e Google Meu Negócio"
+    type: agent
+    agent: seo-specialist
+    tasks:
+      - gmb-setup
+      - auditoria-seo
+      - palavras-chave
+    file: steps/step-13-seo.md
+    depends_on: step-12
+
+  - id: step-14
+    name: "Campanhas de Tráfego"
+    type: agent
+    agent: paid-media
+    optional: true
+    tasks:
+      - estrutura-campanhas
+      - criativos-anuncio
+    file: steps/step-14-trafego.md
+    depends_on: step-10
+
+  - id: step-15
+    name: "Aprovação Operacional"
+    type: checkpoint
+    file: steps/step-15-aprovacao-operacao.md
+    depends_on:
+      - step-11
+      - step-13
+      - step-14
+
+  - id: step-16
+    name: "Cronograma e KPIs"
+    type: agent
+    agent: project-manager
+    tasks:
+      - cronograma-completo
+      - checklist-entrega
+    file: steps/step-16-cronograma.md
+    depends_on: step-15
+
+  - id: step-17
+    name: "Definição de Métricas"
+    type: agent
+    agent: data-analyst
+    tasks:
+      - kpis-90-dias
+      - template-relatorio
+    file: steps/step-17-metricas.md
+    depends_on: step-16
+
+checkpoints:
+  - step-01   # Diagnóstico — dados do cliente
+  - step-04   # Aprovação da estratégia
+  - step-10   # Aprovação criativa (conteúdo + visual)
+  - step-15   # Aprovação operacional (automação + site + SEO)
+
+output:
+  artifacts:
+    - output/diagnostico.md
+    - output/pesquisa-mercado.md
+    - output/plano-estrategico.md
+    - output/conceito-criativo.md
+    - output/copy-pecas.md
+    - output/calendario-editorial.md
+    - output/briefing-video.md
+    - output/direcao-visual.md
+    - output/automacao-setup.md
+    - output/brief-site.md
+    - output/auditoria-seo.md
+    - output/plano-trafego.md
+    - output/cronograma.md
+    - output/kpis.md
