@@ -1,0 +1,16 @@
+id,name,icon,role,path,execution,skills
+gerente,Gabi Gerente,🎯,Diagnostica cliente e orquestra o pipeline de execução,./agents/gerente.agent.md,inline,
+strategist,Sara Estratégia,📊,Cria plano estratégico e define funil e canais,./agents/strategist.agent.md,inline,web_search
+researcher,Raquel Research,🔍,Pesquisa concorrentes e benchmarks com dados reais,./agents/researcher.agent.md,subagent,"web_search,web_fetch"
+data-analyst,Daniel Dados,📈,Analisa métricas e identifica gargalos de performance,./agents/data-analyst.agent.md,inline,
+client-success,Clara Cliente,🤝,Monitora satisfação e identifica oportunidades de upsell,./agents/client-success.agent.md,inline,
+creative-director,Caio Criativo,💡,Cria conceitos e hooks e ideias de conteúdo,./agents/creative-director.agent.md,inline,
+copywriter,Carol Copy,✍️,Escreve textos persuasivos para todos os canais,./agents/copywriter.agent.md,inline,
+content-planner,Pedro Pauta,📅,Monta calendário editorial equilibrado,./agents/content-planner.agent.md,inline,
+video-strategist,Victor Vídeo,🎬,Define tipos de vídeo e cria roteiros e briefings pra PMF,./agents/video-strategist.agent.md,inline,
+designer,Diana Design,🎨,Direção visual e prompts de imagem IA,./agents/designer.agent.md,inline,
+paid-media,Paula Paid,📢,Estrutura campanhas Meta Ads e Google Ads,./agents/paid-media.agent.md,inline,"web_search"
+automation-engineer,André Automação,🤖,Configura CRM e WhatsApp e fluxos n8n,./agents/automation-engineer.agent.md,inline,
+web-developer,Wesley Web,🌐,Cria sites e landing pages integrados com CRM,./agents/web-developer.agent.md,inline,
+project-manager,Patrícia Projeto,📋,Controla prazos e entregas e identifica bloqueios,./agents/project-manager.agent.md,inline,
+seo-specialist,Sofia SEO,🔎,Configura Google Meu Negócio e ranqueamento local,./agents/seo-specialist.agent.md,inline,"web_search"
